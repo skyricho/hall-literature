@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" lang="pt-br">
+<head><title>Submit after typing finished</title>
+<script language="javascript" type="text/javascript">
+function DelayedSubmission() {
+    var date = new Date();
+    initial_time = date.getTime();
+    if (typeof setInverval_Variable == 'undefined') {
+            setInverval_Variable = setInterval(DelayedSubmission_Check, 50);
+    } 
+}
+function DelayedSubmission_Check() {
+    var date = new Date();
+    check_time = date.getTime();
+    var limit_ms=check_time-initial_time;
+    if (limit_ms > 800) { //Change value in milliseconds
+        alert("insert your function"); //Insert your function
+        clearInterval(setInverval_Variable);
+        delete setInverval_Variable;
+    }
+}
+
+</script>
+</head>
+<body>
+
+<input type="search" onkeyup="DelayedSubmission()" id="field_id" style="WIDTH: 100px; HEIGHT: 25px;" />
+
+</body>
+</html>

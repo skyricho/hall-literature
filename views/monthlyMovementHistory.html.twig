@@ -1,0 +1,16 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Month</th>
+      <th scope="col">Moved</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for monthlyMovement in monthlyMovements %}
+    <tr>
+      <td>{{ monthlyMovement.date|date("M") }}</td>
+      <td>{{ monthlyMovement.moved }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
