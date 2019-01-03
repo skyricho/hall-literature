@@ -1,0 +1,32 @@
+{% extends "inventory.twig" %}
+
+{% block title %}Monthly Inventory{% endblock %}
+
+{% block movementHistory %}
+<a data-toggle="collapse" href="#collapse-{{ publication.recID }}" role="button" aria-expanded="false" aria-controls="collapse-{{ publication.recID }}">
+{% endblock %}
+
+{% block onHand %} 
+  {{ publication.onHandEnd }}
+{% endblock %}
+
+{% block note %} 
+  {{ publication.inventoryNote }}
+{% endblock %}
+
+{% block onHandForm %} 
+
+
+<form id="form-{{ publication.recID }}" ic-post-to="update-inventory.php" ic-target="#requested-{{ publication.recID }}">
+  <div class="input-group my-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-sm">On Hand</span>
+    </div>
+    <input type="hidden" name="recID" value="{{ publication.recID }}">
+    <input type="text" class="form-control text-right" name="onHandEnd" value="{{ publication.onHandEnd }}">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="submit">Submit</button>
+    </div>
+  </div>
+</form>
+{% endblock %}

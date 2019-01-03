@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Receive Literature{% endblock %}
+
+{% block Navbar %}
+  <a class="navbar-brand" href="index.php">Hall Literature</a>
+  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>          
+  </button>
+
+  <div class="navbar-collapse collapse" id="navbarsExample01" style="">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+    </ul>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <h3>Receive Literature</h3>
+  {% if msg %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>Whoops!</strong> {{ msg }}.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  {% else %}
+    <ul class="list-group">
+      {% for publication in publications %}
+        <li class="list-group-item">
+          <a data-toggle="collapse" href="#collapse-{{ publication.recID }}" role="button" aria-expanded="false" aria-controls="collapse-{{ publication.recID }}">
+          {{ publication.title }} 
+          </a>
+          <div class="float-right" id="shipped-{{ publication.recID }}">
+            {{ publication.shipped }}
+          </div>
+          <div class="collapse" id="collapse-{{ publication.recID }}">
+            <p><span class="badge badge-light">{{ publication.symbol }}</span> Ordered: {{ publication.requested }}</p>
+            <div id="form-{{ publication.recID }}">
+            <!--<form action="update-received.php" method="POST">-->
+            <form ic-post-to="update-received.php" ic-target="#shipped-{{ publication.recID }}">
+              <input type="hidden" name="recID" value="{{ publication.recID }}">
+              <div class="container">
+                <div class="form-row">
+                  <div class="col-7">
+                    <label class="align-middle" for="Received">Received</label>
+                  </div>
+                  <div class="col">
+                    <input type="number" name="shipped" class="form-control" value="{{ publication.shipped }}">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <button class="invisible" type="submit" class="btn btn-primary">Update</button>
+                </div>
+              </div>
+            </form>
+            </div>
+
+            
+
+          
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+{% endblock %}
+

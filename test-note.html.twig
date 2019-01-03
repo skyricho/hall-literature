@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Test Note{% endblock %}
+
+
+{% block content %}
+  <h4>Test Note Feature</h4>
+  {% if msg %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>Whoops!</strong> {{ msg }}.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  {% elseif cupboard %}
+      <div class="dropdown">
+      <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             Cupboard {{ cupboard }}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="?cupboard=1">
+          Cupboard 1
+        </a>
+        <a class="dropdown-item" href="?cupboard=2">
+          Cupboard 2
+        </a>
+        <a class="dropdown-item" href="?cupboard=3">
+          Cupboard 3
+        </a>
+        <a class="dropdown-item" href="?cupboard=4">
+          Cupboard 4
+        </a>
+        <a class="dropdown-item" href="?cupboard=5">
+          Cupboard 5
+        </a>
+        <a class="dropdown-item" href="?cupboard=6">
+          Cupboard 6
+        </a>
+        <a class="dropdown-item" href="?cupboard=7">
+          Cupboard 7
+        </a>
+        </div>
+    </div>
+
+    <ul class="list-group">
+      {% for publication in publications %}
+        <li class="list-group-item">
+          {{ publication.title }}
+          <span class="badge badge-light">{{ publication.symbol }}</span>
+          
+          
+            <div id="note-{{ publication.recID }}">
+              <p ic-src="update-note.php?recID={{ publication.recID }}" ic-trigger-on="dblclick"><small class="text-muted">{{ publication.note }}</small></p>
+            </div>
+            
+
+
+        </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <ul class="list-group">
+        <li class="list-group-item">
+          <a href="?cupboard=1">
+          Cupboard 1
+        </a>
+           </ul>
+           <li class="list-group-item">
+        <a href="?cupboard=2">
+          Cupboard 2
+        </a>
+           </ul>
+           <li class="list-group-item">
+        <a href="?cupboard=3">
+          Cupboard 3
+        </a>
+           </ul>
+           <li class="list-group-item">
+        <a href="?cupboard=4">
+          Cupboard 4
+        </a>
+        <li class="list-group-item">
+           </ul>
+        <a href="?cupboard=5">
+          Cupboard 5
+        </a>
+        <li class="list-group-item">
+           </ul>
+        <a href="?cupboard=6">
+          Cupboard 6
+        </a>
+        <li class="list-group-item">
+           </ul>
+        <a href="?cupboard=7">
+          Cupboard 7
+        </a>
+        </li>
+    </ul>
+      {% endif %}
+
+{% endblock %}

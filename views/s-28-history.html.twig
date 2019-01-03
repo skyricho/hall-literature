@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Month</th>
+      <th scope="col">On Hand Start</th>
+      <th scope="col">Received</th>
+      <th scope="col">On Hand End</th>
+      <th scope="col">Moved</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for monthlyMovement in monthlyMovements %}
+    <tr>
+      <td>{{ monthlyMovement.date|date("M") }}</td>
+      <td>{{ monthlyMovement.onHandStart }}</td>
+      <td>{{ monthlyMovement.received }}</td>
+      <td>{{ monthlyMovement.onHandEnd }}</td>
+      <td>{{ monthlyMovement.moved }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>

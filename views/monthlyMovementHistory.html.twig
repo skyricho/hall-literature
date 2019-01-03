@@ -9,7 +9,7 @@
   {% for monthlyMovement in monthlyMovements %}
     <tr>
       <td>{{ monthlyMovement.date|date("M") }}</td>
-      <td>{{ monthlyMovement.moved }}</td>
+      <td>{{ monthlyMovement.moved }} {% if monthlyMovement.received %} ({{ monthlyMovement.received }}) {% endif %}</td>
     </tr>
   {% endfor %}
   </tbody>

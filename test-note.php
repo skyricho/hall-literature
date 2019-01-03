@@ -4,10 +4,11 @@ require 'vendor/autoload.php';
 
 $loader = new Twig_Loader_Filesystem('views');
 $twig = new Twig_Environment($loader);
-$template = $twig->load('receive.html.twig');
+$template = $twig->load('test-note.html.twig');
 
+if (isset($_GET['cupboard'])) {
 	$request = $fm->newFindCommand('web');
-    $request->addFindCriterion('INVENTORY::requested', '*'); 
+    $request->addFindCriterion('cupboard location', $_GET['cupboard']); 
     $result = $request->execute();
 
     if (FileMaker::isError($result)) {
@@ -22,14 +23,14 @@ $template = $twig->load('receive.html.twig');
             $publications[] = array(
                 'title' => $record->getField('title'),
                 'recID' => $record->getField('recID'),
-                'requested' => $record->getField('INVENTORY::requested'),
-                'shipped' => $record->getField('INVENTORY::shipped'),
+                'onHand' => $record->getField('INVENTORY::on hand start'),
+                'proposed' => $record->getField('INVENTORY::proposed'),
                 'note' => $record->getField('note'),
                 'symbol' => $record->getField('_symbol'),
             );
         }
     }
- 
+} 
 
 echo $template->render(array(
         'publications' => $publications,

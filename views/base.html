@@ -8,6 +8,7 @@
 
       <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   
       <title>{% block title %}{% endblock %}</title>
@@ -15,10 +16,39 @@
   </head>
   <body>
     <nav class="navbar navbar-dark bg-secondary">
-      {% block Navbar %}
-        <a class="navbar-brand" href="index.php">starter-app</a>
-      {% endblock %}
+      <a class="navbar-brand" href="index.php">Hall Literature</a>
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>          
+      </button>
+
+      <div class="navbar-collapse collapse" id="navbarsExample01" style="">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="count.php">Count</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="request.php">Request</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="receive.php">Receive</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://chat.whatsapp.com/DWntUsBWnFE9nWOwIL5T6j">WhatsApp Group</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLSfhpyRBC5Et3TyfIIcb11oz6mhHEWnCfX-5aizgfGWCFWLV8w/viewform?usp=sf_link">Special-Request Item Form</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.evernote.com/l/AAY-X8qq8BBKYrJYQpqgNGgAAaoTKTG_GT4">Reminders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="s-28.php">S-28</a>
+          </li>
+      
+        </ul>
+      </div>
     </nav>
+
     {% block content %}
       
     {% endblock %}
@@ -27,5 +57,6 @@
       <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+      <script src="https://intercoolerreleases-leaddynocom.netdna-ssl.com/intercooler-1.2.1.min.js"></script>
   </body>
 </html>
