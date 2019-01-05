@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block title %}Special Requests{% endblock %}
+
+{% block Navbar %}
+  <a class="navbar-brand" href="../index.php">Hall Literature</a>
+  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>          
+  </button>
+
+  <div class="navbar-collapse collapse" id="navbarsExample01" style="">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#exampleModal" data-toggle="modal" data-target="#exampleModal">Add Publisher</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#exampleModal1" data-toggle="modal" data-target="#exampleModal1">Reset Received</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="initialisms/">Initialisms</a>
+      </li>
+    </ul>
+  </div>
+{% endblock %}
+
+{% block content %}
+<!-- Modal: Add Publisher -->
+<div class="modal" tabindex="-1" role="dialog" id="exampleModal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Publisher</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="publisher.php" method="POST">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon3">First Name</span>
+            </div>
+            <input type="text" class="form-control" aria-describedby="basic-addon3" name="firstName" value="">
+          </div>
+      </div>
+      <div class="modal-footer">
+          <input class="btn btn-outline-primary" type="submit" name="add_publisher" value="Add Publisher">
+        </form>
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Add Publisher -->
+<div class="modal" tabindex="-1" role="dialog" id="exampleModal1">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Reset 'Received'</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>Are you sure?</p>
+       <a class="btn btn-outline-danger" href="?script=reset">Reset 'Received'<a>
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Nav: block, street and filter -->  
+<ul class="nav">
+  <li class="nav-item">
+    <div class="dropdown">
+      <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {% if statusFilter %}
+           {{ statusFilter|capitalize }}
+        {% else %}
+           Submitted
+        {% endif %}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="?filter=all">
+          All
+        </a>
+        <a class="dropdown-item" href="?filter=requested">
+          Requested
+        </a>
+        <a class="dropdown-item" href="?filter=submitted">
+          Submitted
+        </a>
+        <a class="dropdown-item" href="?filter=pending">
+          Pending
+        </a>
+        <a class="dropdown-item" href="?filter=received">
+          Received
+        </a>
+        <a class="dropdown-item" href="?filter=handed-out">
+          Handed Out
+        </a>
+      </div>
+    </div>
+  </li>
+  <li class="nav-item">
+    <a class="btn btn-outline-secondary" href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+      Add Request
+    </a>
+  </li>
+</ul>
+
+{% if msg %}
+  <div class="alert alert-success alert-dismissible fade show" role="alert" id="alert">
+    {{ msg }}
+  </div>
+{% endif %}
+
+<ul class="list-group">
+  {% for specialRequest in specialRequests %}
+    <li class="list-group-item">
+      <h6>{{ specialRequest.name }}</h6>
+      <div class="row">
+        <div class="col-8">
+          {{ specialRequest.item }} <span class="badge badge-light">{{ specialRequest.itemCode }} </span> <span class="badge badge-pill badge-dark">{{ specialRequest.quantity }}</span>
+          {% if specialRequest.language %}
+            <br><span class="badge badge-warning">{{ specialRequest.language }}</span>
+          {% endif %}
+          {% if specialRequest.note %}
+            <br><small>{{ specialRequest.note }}</small>
+          {% endif %}
+        </div>
+        <div class="col-4" id="status-{{ specialRequest.id }}">
+          {% if specialRequest.status == 'handed out' %}
+            <i>{{ specialRequest.status }}</i>
+          {% else %}
+          <form ic-post-to="post.php" ic-target="#status-{{ specialRequest.id }}">
+            <input type="hidden" name="id" value="{{ specialRequest.id }}">
+            <input class="btn btn-outline-primary btn-sm" type="submit" name="handedOut" value="Handed Out">
+          </form>
+          {% endif %}
+        </div>
+      </div>
+      <ul class="list-unstyled">
+      {% for status in specialRequest.statusHistory %}
+        <li class="text-muted">
+          <small><i>{{ status.status }} {{ status.date|date ("j M Y") }}</i></small>
+        </li>
+      {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>
+
+
+
+{% endblock %}
+
