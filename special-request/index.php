@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors', 1); // To debug errors
+//ini_set('display_errors', 1); // To debug errors
 include ("../dbaccess.php"); 
 require '../vendor/autoload.php';
 
@@ -8,7 +8,6 @@ $twig = new Twig_Environment($loader);
 $template = $twig->load('special-request/index.html.twig');
 
 
-//if (isset($_GET['filter'])) {
 if (isset($_GET['filter'])) {
     if ($_GET['filter'] == 'all') {
         $request = $fm->newFindAllCommand('webSpecialRequest');
@@ -89,7 +88,7 @@ if (isset($_GET['msg'])) {
 }
 
 echo $template->render(array(
-        'statusFilter' => 'foo', //$_GET['filter'],
+        'statusFilter' => $_GET['filter'],
         'msg' => $msg,
         'specialRequests' => $var,
         'itemCodes' => $itemCodes,
