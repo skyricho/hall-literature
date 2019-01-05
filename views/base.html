@@ -23,6 +23,7 @@
 
       <div class="navbar-collapse collapse" id="navbarsExample01" style="">
         <ul class="navbar-nav mr-auto">
+          {% block navlinks %}
           <li class="nav-item">
             <a class="nav-link" href="count.php">Count</a>
           </li>
@@ -44,7 +45,7 @@
           <li class="nav-item">
             <a class="nav-link" href="s-28.php">S-28</a>
           </li>
-      
+          {% endblock %}
         </ul>
       </div>
     </nav>
