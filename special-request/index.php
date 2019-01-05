@@ -1,25 +1,41 @@
 <?php
-//ini_set('display_errors', 1); // To debug errors
+ini_set('display_errors', 1); // To debug errors
 include ("../dbaccess.php"); 
 require '../vendor/autoload.php';
-
 
 $loader = new Twig_Loader_Filesystem('../views');
 $twig = new Twig_Environment($loader);
 $template = $twig->load('special-request/index.html.twig');
 
-if ($_GET['filter'] == 'all') {
-	$request = $fm->newFindAllCommand('webSpecialRequest');
-    $result = $request->execute();
 
-} elseif ($_GET['filter'] == 'received') {
-	$request = $fm->newFindCommand('web');
-	$request->addFindCriterion('status', 'received'); 
-	//$request->addSortRule('firstName', 1);
-	$result = $request->execute();
+//if (isset($_GET['filter'])) {
+if (isset($_GET['filter'])) {
+    if ($_GET['filter'] == 'all') {
+        $request = $fm->newFindAllCommand('webSpecialRequest');
+        $result = $request->execute();
 
-	if (FileMaker::isError($result)) {
+        if (FileMaker::isError($result)) {
+		    $msg = 'Error: ' . $result->getMessage();
+		}
+
+    } elseif ($_GET['filter'] == 'handed-out') {
+		$request = $fm->newFindCommand('webSpecialRequest');
+		$request->addFindCriterion('status', 'handed out'); 
+		$result = $request->execute();
+
+		if (FileMaker::isError($result)) {
 	    $msg = 'Error: ' . $result->getMessage();
+	    }
+
+	} else {
+		$request = $fm->newFindCommand('webSpecialRequest');
+		$request->addFindCriterion('status', $_GET['filter']); 
+		$result = $request->execute();
+
+		if (FileMaker::isError($result)) {
+	    $msg = 'Error: ' . $result->getMessage();
+	    }
+
 	}
 
 } else {
@@ -67,17 +83,13 @@ if (empty($msg)) {
 	}
 }
 
-//$layout =& $fm->getLayout('StandingRequest');
-// Value list returned an array
-//$itemCodes = $layout->getValueListTwoFields('itemCode', 1);
-//$languageCodes = $layout->getValueListTwoFields('languageCode', 1);
 
 if (isset($_GET['msg'])) {
 	$msg = $_GET['msg'];
 }
 
 echo $template->render(array(
-        'statusFilter' => $_GET['filter'],
+        'statusFilter' => 'foo', //$_GET['filter'],
         'msg' => $msg,
         'specialRequests' => $var,
         'itemCodes' => $itemCodes,
