@@ -1,4 +1,5 @@
-<?php 
+<?php
+//ini_set('display_errors', 1); // To debug errors
 include ("../dbaccess.php");
 
 if (isset($_POST['handedOut'])) {
@@ -25,26 +26,26 @@ if (isset($_POST['handedOut'])) {
 	  echo 'handed out';
 
 } elseif (isset($_POST['addRequest'])) {
-  // Insert record to SpecialRequest
+    // Insert record to SpecialRequest
     $request = $fm->createRecord('webSpecialRequest');
     $request->setField('item', $_POST['item']);
     $request->setField('itemCode', $_POST['itemCode']);
-    $request->setField('quantity', $_POST['quantity')];
-    $request->setField('language', $_POST['language')];
+    $request->setField('quantity', $_POST['quantity']);
+    $request->setField('language', $_POST['language']);
     $request->setField('note', $_POST['note']);
     $request->setField('name', $_POST['name']);
-    $request->setField('status', 'requested';
+    $request->setField('status', 'requested');
     $request->setField('SpecialRequestStatus::status', 'requested');
     $request->setField('SpecialRequestStatus::date', date("m/d/Y"));
     $result=$request->commit();
 
     if (FileMaker::isError($result)) {
-      echo "<p>Error: " . $result->getMessage() . "</p>"; exit;
+      echo "Error: " . $result->getMessage(); exit;
     }
 
-    echo 'Request for ' . $_POST['name'] . ' added';
+    $msg = 'Request has been added.';
+    header('Location: https://qc.r2labs.com/hall-literature/special-request/?filter=' . $_POST['filter'] . '&msg=' . $msg);
 
 }
 
 ?>
-
