@@ -7,12 +7,9 @@ $twig = new Twig_Environment($loader);
 $template = $twig->load('s-28-inventory.twig');
 
 
-
-
-
 $request = $fm->newFindCommand('web');
-$request->addFindCriterion('cupboard location', '*');
-$request->addSortRule('S_28 position', 1, FILEMAKER_SORT_ASCEND);
+$request->addFindCriterion('cupboardLocation', '*');
+$request->addSortRule('s28Position', 1, FILEMAKER_SORT_ASCEND);
 $result = $request->execute();
 
 if (FileMaker::isError($result)) {
@@ -25,14 +22,14 @@ if (FileMaker::isError($result)) {
     $publications = array();
     foreach($records as $record) {
         $publications[] = array(
-            'title' => $record->getField('title'),
-            'recID' => $record->getField('recID'),
-            'onHand' => $record->getField('INVENTORY::on hand start'),
-            'onHandEnd' => $record->getField('INVENTORY::on hand end'),
+            'title' => $record->getField('publicationTitle'),
+            'recID' => $record->getField('id'),
+            /*'onHand' => $record->getField('INVENTORY::onHandStart'),
+            'onHandEnd' => $record->getField('INVENTORY::onHandEnd'),
             'proposed' => $record->getField('INVENTORY::proposed'),
             'inventoryNote' => $record->getField('inventoryNote'),
             'requestNote' => $record->getField('requestNote'),
-            'symbol' => $record->getField('_symbol'),
+            'symbol' => $record->getField('publicationCode'),*/
         );
     }
 }

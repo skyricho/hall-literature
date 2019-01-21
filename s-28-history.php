@@ -8,18 +8,18 @@ $template = $twig->load('s-28-history.html.twig');
 
 if (isset($_GET['recID'])) {
 	$record = $fm->getRecordByID('web', $_GET['recID']);
-	$related_records = $record->getRelatedSet('INVENTORY ARCHIVE');
+	$related_records = $record->getRelatedSet('InventoryArchive');
     
-    $_symbol = $record->getField('_symbol');
+    $_symbol = $record->getField('publicationCode');
 
     $monthlyMovements = array();
     foreach($related_records as $related_record) {
         $monthlyMovements[] = array(
-            'date' => $related_record->getField('INVENTORY ARCHIVE::date'),
-            'moved' => $related_record->getField('INVENTORY ARCHIVE::moved'),
-            'received' => $related_record->getField('INVENTORY ARCHIVE::shipped'),
-            'onHandStart' => $related_record->getField('INVENTORY ARCHIVE::on hand start'),
-            'onHandEnd' => $related_record->getField('INVENTORY ARCHIVE::on hand end'),
+            'date' => $related_record->getField('InventoryArchive::date'),
+            'moved' => $related_record->getField('InventoryArchive::moved'),
+            'received' => $related_record->getField('InventoryArchive::received'),
+            'onHandStart' => $related_record->getField('InventoryArchive::onHandStart'),
+            'onHandEnd' => $related_record->getField('InventoryArchive::onHandEnd')
         );
     }
 
