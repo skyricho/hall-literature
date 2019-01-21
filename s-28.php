@@ -28,8 +28,8 @@ if (FileMaker::isError($result)) {
             'onHandEnd' => $record->getField('INVENTORY::onHandEnd'),
             'proposed' => $record->getField('INVENTORY::proposed'),
             'inventoryNote' => $record->getField('inventoryNote'),
-            'requestNote' => $record->getField('requestNote'),
-            'symbol' => $record->getField('publicationCode'),*/
+            'requestNote' => $record->getField('requestNote'),*/
+            'symbol' => $record->getField('publicationCode'),
         );
     }
 }

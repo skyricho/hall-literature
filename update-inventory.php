@@ -1,12 +1,25 @@
-
 <?php
 ini_set('display_errors', 1);
 include ("dbaccess.php"); 
-?>
-         
-<?php 
+
+ 
+# Check the POST id and update the shipped field.
 if (isset($_POST['id'])) {
-$request = $fm->newFindCommand('webCount');
+    $edit = $fm->newEditCommand('web', $_POST['id']);
+    $edit->setField('Inventory::onHandEnd', $_POST['onHandEnd']);
+    $edit->execute();
+} else {
+    echo 'Houston we have a problem'; 
+}
+
+# Render onHandEnd value
+$record = $fm->getRecordByID('web', $_POST['id']);
+$onHandEnd = $record->getField('Inventory::onHandEnd');
+echo $onHandEnd;
+
+/*
+if (isset($_POST['id'])) {
+$request = $fm->newFindCommand('web');
 $request->addFindCriterion('id', $_POST['id']); 
 $result = $request->execute();
 
@@ -14,7 +27,7 @@ $result = $request->execute();
 $record = $fm->getRecordByID('web', $request);
 echo $request;
 }
-
+*/
 
 # Check the POST recID and update the shipped field.
 /*if (isset($_POST['recID'])) {
@@ -44,8 +57,8 @@ echo $request;
 -->
 
 <!-- test form -->
-<form action="update-inventory.php" method="post">
+<!--<form action="update-inventory.php" method="post">
   <input type="number" name="id" value="">
   <input type="number" name="onHandEnd" value="">
   <input type="submit" name="submit" value="Submit">
-</form>
+</form>-->

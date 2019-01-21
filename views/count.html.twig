@@ -1,32 +1,78 @@
-{% extends "inventory.twig" %}
+{% extends "base.html" %}
 
 {% block title %}Monthly Inventory{% endblock %}
 
-{% block movementHistory %}
-<a data-toggle="collapse" href="#collapse-{{ publication.recID }}" role="button" aria-expanded="false" aria-controls="collapse-{{ publication.recID }}">
-{% endblock %}
-
-{% block onHand %} 
-  {{ publication.onHandEnd }}
-{% endblock %}
-
-{% block note %} 
-  {{ publication.inventoryNote }}
-{% endblock %}
-
-{% block onHandForm %} 
-
-
-<form id="form-{{ publication.recID }}" ic-post-to="update-inventory.php" ic-target="#requested-{{ publication.recID }}">
-  <div class="input-group my-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="inputGroup-sizing-sm">On Hand</span>
+{% block content %}
+  {% if msg %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>Whoops!</strong> {{ msg }}.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-    <input type="hidden" name="recID" value="{{ publication.recID }}">
-    <input type="text" class="form-control text-right" name="onHandEnd" value="{{ publication.onHandEnd }}">
-    <div class="input-group-append">
-      <button class="btn btn-outline-secondary" type="submit">Submit</button>
+  {% elseif publicationType %}
+    <div class="dropdown">
+      <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{ publicationType }}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        {% for pubType in publicationTypes %}
+        <a class="dropdown-item" href="?publicationType={{ pubType }}">
+          {{ pubType }}
+        </a>
+        {% endfor %}
+      </div>
     </div>
-  </div>
-</form>
+
+     <ul class="list-group">
+      {% for publication in publications %}
+      <li class="list-group-item">
+        <div class="clearfix">    
+          {% block movementHistory %}
+          <div class="float-left">
+            <a data-toggle="collapse" href="#collapse-{{ publication.id }}" role="button" aria-expanded="false" aria-controls="collapse-{{ publication.id }}"ic-get-from="monthlyMovementHistory.php?id={{ publication.id }}" ic-target="#monthlyMovements-{{ publication.id }}">
+          {% endblock %}
+              {{ publication.publicationTitle }}
+            </a><span class="badge badge-light"> {{ publication.publicationCode }}</span>
+            <br><small class="text-muted">{{ publication.inventoryNote }}</small>   
+          </div>
+          <div class="float-right" id="requested-{{ publication.id }}">
+           {{ publication.onHandEnd }}
+          </div>      
+        </div>
+
+          <div class="collapse" id="collapse-{{ publication.id }}">
+            <div>
+               <form id="form-{{ publication.id }}" ic-post-to="update-inventory.php" ic-target="#requested-{{ publication.id }}">
+                <div class="input-group my-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">On Hand</span>
+                  </div>
+                  <input type="hidden" name="id" value="{{ publication.id }}">
+                  <input type="text" class="form-control text-right" name="onHandEnd" value="{{ publication.onHandEnd }}">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+            
+    
+        </li>
+      {% endfor %}
+    </ul>
+
+  {% else %}
+      <ul class="list-group">
+        {% for pubType in publicationTypes %}
+        <li class="list-group-item">
+          <a href="?publicationType={{ pubType }}">
+            {{ pubType }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>  
+  {% endif %}
+
 {% endblock %}

@@ -27,9 +27,8 @@ if (isset($_GET['publicationType'])) {
                 'id' => $record->getField('id'),
                 'publicationCode' => $record->getField('publicationCode'),
                 'publicationTitle' => $record->getField('publicationTitle'),
-                'onHand' => $record->getField('Inventory::OnHandEnd'),
-                'inventoryNote' => $record->getField('inventoryNote'),
-
+                'onHandEnd' => $record->getField('Inventory::onHandEnd'),
+                'inventoryNote' => $record->getField('inventoryNote')
             );
         }
     }
