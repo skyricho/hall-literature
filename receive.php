@@ -7,7 +7,7 @@ $twig = new Twig_Environment($loader);
 $template = $twig->load('receive.html.twig');
 
 	$request = $fm->newFindCommand('web');
-    $request->addFindCriterion('INVENTORY::requested', '*'); 
+    $request->addFindCriterion('Inventory::requested', '*'); 
     $result = $request->execute();
 
     if (FileMaker::isError($result)) {
@@ -20,12 +20,12 @@ $template = $twig->load('receive.html.twig');
         $publications = array();
         foreach($records as $record) {
             $publications[] = array(
-                'title' => $record->getField('title'),
-                'recID' => $record->getField('recID'),
-                'requested' => $record->getField('INVENTORY::requested'),
-                'shipped' => $record->getField('INVENTORY::shipped'),
+                'title' => $record->getField('publicationTitle'),
+                'recID' => $record->getField('id'),
+                'requested' => $record->getField('Inventory::requested'),
+                'shipped' => $record->getField('Inventory::received'),
                 'note' => $record->getField('note'),
-                'symbol' => $record->getField('_symbol'),
+                'symbol' => $record->getField('publicationCode'),
             );
         }
     }
@@ -33,7 +33,6 @@ $template = $twig->load('receive.html.twig');
 
 echo $template->render(array(
         'publications' => $publications,
-        'cupboard' => $_GET['cupboard'],
         'msg' => $msg,
         )
     );

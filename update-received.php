@@ -7,7 +7,7 @@ include ("dbaccess.php");
 # Check the POST recID and update the shipped field.
 if (isset($_POST['recID'])) {
     $edit = $fm->newEditCommand('web', $_POST['recID']);
-    $edit->setField('INVENTORY::shipped', $_POST['shipped']);
+    $edit->setField('Inventory::received', $_POST['shipped']);
     $edit->execute();
 } else {
     echo 'Houston we have a problem'; 
@@ -15,7 +15,7 @@ if (isset($_POST['recID'])) {
 
 # Render shipped value
 $record = $fm->getRecordByID('web', $_POST['recID']);
-$shipped = $record->getField('INVENTORY::shipped');
+$shipped = $record->getField('Inventory::received');
 echo $shipped;
 ?>
 
