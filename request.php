@@ -32,7 +32,7 @@ if (FileMaker::isError($result)) {
     $publications = array();
     foreach($records as $record) {
         $publications[] = array(
-            'recID' => $record->getField('id'),
+            'id' => $record->getField('id'),
             'symbol' => $record->getField('publicationCode'),
             'title' => $record->getField('publicationTitle'),
             'proposed' => $record->getField('Inventory::proposed'),
