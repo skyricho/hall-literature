@@ -79,16 +79,7 @@
       {% endfor %}
     </ul>
 
-    {% else %}
-      <ul class="list-group">
-        {% for pubType in publicationTypes %}
-        <li class="list-group-item">
-          <a href="?publicationType={{ pubType }}">
-            {{ pubType }}
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
+    
     {% endif %}
 
 {% endblock %}
