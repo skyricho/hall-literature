@@ -10,17 +10,30 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-  {% elseif publicationType %}
+  {% elseif publications %}
     <div class="dropdown">
       <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {{ publicationType }}
+        Cupboard {{ cupboardLocation }}
       </a>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        {% for pubType in publicationTypes %}
-        <a class="dropdown-item" href="?publicationType={{ pubType }}">
-          {{ pubType }}
+        <a class="dropdown-item" href="?cupboard=1">
+          Cupboard 1
         </a>
-        {% endfor %}
+        <a class="dropdown-item" href="?cupboard=2">
+          Cupboard 2
+        </a>
+        <a class="dropdown-item" href="?cupboard=3">
+          Cupboard 3
+        </a>
+        <a class="dropdown-item" href="?cupboard=4">
+          Cupboard 4
+        </a>
+        <a class="dropdown-item" href="?cupboard=5">
+          Cupboard 5
+        </a>
+        <a class="dropdown-item" href="?cupboard=6">
+          Cupboard 6
+        </a>
       </div>
     </div>
 
@@ -64,14 +77,37 @@
     </ul>
 
   {% else %}
-      <ul class="list-group">
-        {% for pubType in publicationTypes %}
+      <ul class="list-group">       
         <li class="list-group-item">
-          <a href="?publicationType={{ pubType }}">
-            {{ pubType }}
+          <a href="?cupboard=1">
+          Cupboard 1
           </a>
         </li>
-        {% endfor %}
+        <li class="list-group-item">
+          <a href="?cupboard=2">
+          Cupboard 2
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="?cupboard=3">
+          Cupboard 3
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="?cupboard=4">
+          Cupboard 4
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="?cupboard=5">
+          Cupboard 5
+          </a>
+        </li>
+        <li class="list-group-item">
+          <a href="?cupboard=6">
+          Cupboard 6
+          </a>
+        </li>
       </ul>  
   {% endif %}
 

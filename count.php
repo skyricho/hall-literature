@@ -9,10 +9,10 @@ $twig = new Twig_Environment($loader);
 $template = $twig->load('count.html.twig');
 
 
-if (isset($_GET['publicationType'])) {
+if (isset($_GET['cupboard'])) {
     $request = $fm->newFindCommand('web');
-    $request->addFindCriterion('publicationType', $_GET['publicationType']);
-    $request->addFindCriterion('webHide', '='); 
+    $request->addFindCriterion('cupboardLocation', $_GET['cupboard']);
+    //$request->addFindCriterion('webHide', '='); 
     $result = $request->execute();
 
     if (FileMaker::isError($result)) {
@@ -40,8 +40,9 @@ $publicationTypes = $layout->getValueListTwoFields('publicationType', 2);
 echo $template->render(array(
         'msg' => $msg,
         'publications' => $publications,
-        'publicationType' => $_GET['publicationType'],
-        'publicationTypes' => $publicationTypes
+        'cupboardLocation' => $_GET['cupboard'],
+        //'publicationType' => $_GET['publicationType'],
+        //'publicationTypes' => $publicationTypes
         )
     );
 
