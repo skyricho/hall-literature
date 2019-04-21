@@ -24,7 +24,8 @@ if (isset($_GET['publicationType'])) {
                 'onHand' => $record->getField('Inventory::cOnHand'),
                 'requested' => $record->getField('Inventory::cRequested'),
                 'inventoryNote' => $record->getField('inventoryNote'),
-
+                'reOrderLabel' => $record->getField('reorderLabel'),
+                'reOrderQuantity' => $record->getField('reorderQuantity')
             );
         }
     }

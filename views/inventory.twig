@@ -35,7 +35,11 @@
           <div class="float-left">
             <a data-toggle="collapse" href="#collapse-{{ publication.id }}" role="button" aria-expanded="false" aria-controls="collapse-{{ publication.id }}" ic-get-from="monthlyMovementHistory.php?id={{ publication.id }}" ic-target="#monthlyMovements-{{ publication.id }}">
               {{ publication.publicationTitle }}
-            </a><span class="badge badge-light"> {{ publication.publicationCode }}</span>
+            </a>
+            <span class="badge badge-light"> {{ publication.publicationCode }}</span>
+            {% if publication.reOrderLabel %}
+              <span class="badge badge-{{ publication.reOrderLabel }}"> {{ publication.reOrderQuantity }}</span>
+            {% endif %}
             <br><small class="text-muted">{{ publication.inventoryNote }}</small>   
           </div>
           <div class="float-right" id="requested-{{ publication.recID }}">
