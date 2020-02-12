@@ -3,6 +3,7 @@
 {% block title %}Monthly Inventory{% endblock %}
 
 {% block content %}
+  <div id="alert" class="alert alert-winfo alert-dismissible fade show" role="alert"></div>
   {% if msg %}
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
       <strong>Whoops!</strong> {{ msg }}.
@@ -108,7 +109,12 @@
           Cupboard 6
           </a>
         </li>
-      </ul>  
+      </ul>
+
+      <form class="m-4" ic-post-to="submitInventoryReport.php" ic-confirm="Are you sure?" ic-target="#alert">
+      <!--<form action="submitInventoryReport.php" method="POST">-->
+        <input class="btn btn-primary btn-block" type="submit" name="submitInventoryReport" value="Submit Monthly Inventory">
+      </form>  
   {% endif %}
 
 {% endblock %}
