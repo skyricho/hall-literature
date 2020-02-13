@@ -81,7 +81,7 @@
               <h5 class="card-title">Admin</h5>
               
               <!-- On Hand -->
-              <form ic-post-to="admin.php" ic-target="#admin-alert-{{ publication.id }}">
+              <form id="onHand-{{ publication.id }}" ic-post-to="admin.php" ic-target="#admin-alert-{{ publication.id }}">
                 <input type="hidden" name="id" value="{{ publication.id }}">
 
                     <div class="input-group mb-3">
@@ -90,11 +90,78 @@
                       </div>
                       <input type="text" class="form-control" aria-label="On Hand" aria-describedby="basic-addon1" name="onHandEnd" value="{{ publication.onHand }}">
                       <div class="input-group-append">
-                        <button class="btn btn-secondary" type="submit" name="submit" value="updateOnHand">Save</button>
+                        <button class="btn btn-secondary" type="submit" name="submit" value="onHandEnd">Save</button>
                       </div>
-                    </div>
-              
+                    </div>              
               </form>
+
+              <!-- Proposed -->
+              <form id="proposed-{{ publication.id }}" ic-post-to="admin.php" ic-target="#admin-alert-{{ publication.id }}">
+                <input type="hidden" name="id" value="{{ publication.id }}">
+
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Proposed</span>
+                      </div>
+                      <input type="text" class="form-control" aria-label="Proposed" aria-describedby="basic-addon2" name="proposed" value="{{ publication.proposed }}">
+                      <div class="input-group-append">
+                        <button class="btn btn-secondary" type="submit" name="submit" value="proposed">Save</button>
+                      </div>
+                    </div>              
+              </form>
+
+              <!-- Requested -->
+              <form id="proposed-{{ publication.id }}" ic-post-to="admin.php" ic-target="#admin-alert-{{ publication.id }}">
+                <input type="hidden" name="id" value="{{ publication.id }}">
+
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Requested</span>
+                      </div>
+                      <input type="text" class="form-control" aria-label="Requested" aria-describedby="basic-addon3" name="requested" value="{{ publication.requested }}">
+                      <div class="input-group-append">
+                        <button class="btn btn-secondary" type="submit" name="submit" value="requested">Save</button>
+                      </div>
+                    </div>              
+              </form>
+
+              <!-- Received -->
+              <form id="proposed-{{ publication.id }}" ic-post-to="admin.php" ic-target="#admin-alert-{{ publication.id }}">
+                <input type="hidden" name="id" value="{{ publication.id }}">
+
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Received</span>
+                      </div>
+                      <input type="text" class="form-control" aria-label="Received" aria-describedby="basic-addon4" name="received" value="{{ publication.received }}">
+                      <div class="input-group-append">
+                        <button class="btn btn-secondary" type="submit" name="submit" value="received">Save</button>
+                      </div>
+                    </div>              
+              </form>
+
+              <!-- Location -->
+              <form id="proposed-{{ publication.id }}" ic-post-to="admin.php" ic-target="#admin-alert-{{ publication.id }}">
+                <input type="hidden" name="id" value="{{ publication.id }}">
+
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Location</span>
+                      </div>
+                      <select class="form-control" name="cupboard" >
+                        <option value="{{ publication.cupboardLocation }}">{{ publication.cupboardLocation }}</option>
+                        <option value="Cupboard 1">Cupboard 1</option>
+                        <option value="Cupboard 2">Cupboard 2</option>
+                        <option value="Cupboard 3">Cupboard 3</option>
+                        <option value="Cupboard 4">Cupboard 4</option>
+                        <option value="Cupboard 5">Cupboard 5</option>
+                      </select>
+                      <div class="input-group-append">
+                        <button class="btn btn-secondary" type="submit" name="submit" value="location">Save</button>
+                      </div>
+                    </div>              
+              </form>
+
             </div>
           </div>
 
