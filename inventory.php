@@ -26,7 +26,9 @@ if (isset($_GET['publicationType'])) {
                 'inventoryNote' => $record->getField('inventoryNote'),
                 'reOrderLabel' => $record->getField('reorderLabel'),
                 'reOrderQuantity' => $record->getField('reorderQuantity'),
-                'cupboardLocation'=> $record->getField('cupboardLocation')
+                'cupboardLocation'=> $record->getField('cupboardLocation'),
+                'proposed' => $record->getField('Inventory::proposed'),
+                'received' => $record->getField('Inventory::received')
             );
         }
     }
