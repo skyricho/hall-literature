@@ -103,10 +103,23 @@
         </li>
       </ul>
 
-      <form class="m-4" ic-post-to="submitInventoryReport.php" ic-confirm="Are you sure?" ic-target="#alert">
+      <!-- unable to get this script to work -->
+      <!--<form class="m-4" ic-post-to="submitInventoryReport.php" ic-confirm="Are you sure?" ic-target="#alert">
       <!--<form action="submitInventoryReport.php" method="POST">-->
-        <input class="btn btn-primary btn-block" type="submit" name="submitInventoryReport" value="Submit Monthly Inventory">
-      </form>  
+      <!--<input class="btn btn-primary btn-block" type="submit" name="submitInventoryReport" value="Submit Monthly Inventory">
+      </form>-->
+
+      <div class="container">
+        <div class="card mt-4">
+          <div class="card-header">
+            Note
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Has the count been completed?</h5>
+            <p class="card-text">Notify Sky so that the count can be submitted to the archive</p>
+          </div>
+        </div>
+      </div>
   {% endif %}
 
 {% endblock %}
