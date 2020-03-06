@@ -24,16 +24,23 @@
                 <span class="badge badge-light"> {{ publication.symbol }}</span>
               </h5>
               <div id="requested-{{ publication.id }}">
-                <form ic-post-to="update-requested.php" ic-target="#requested-{{ publication.id }}">
+                <form ic-post-to="update-requested.php" ic-indicator="#indicator" ic-target="#requested-{{ publication.id }}">
                   <input type="hidden" name="recID" value="{{ publication.id }}">
                   <!--<input type="text" class="form-control" name="requested" value="{{ publication.requested }}" style="width: 4rem; text-align: right">-->
-                  <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Qty" name="requested" value="{{ publication.requested }}">
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" type="submit" name="update-request" value="update-requested">Save</button>
+                  <div class="row">
+                    <div class="col9">
+                      
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Qty" name="requested" value="{{ publication.requested }}">
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-secondary" type="submit" name="update-request" value="update-requested">Save</button>
+                          <i id="indicator" class="fa fa-spinner fa-spin" style="display:none"></i>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </form>
+
+                </form>      
               </div>
  
           <div class="collapse" id="collapse-{{ publication.id }}">

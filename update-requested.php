@@ -21,10 +21,20 @@ $requested = $record->getField('Inventory::requested');
 
 <form ic-post-to="update-requested.php" ic-target="#requested-<?php echo $_POST['recID']; ?>">
   <input type="hidden" name="recID" value="<?php echo $_POST['recID']; ?>">
-  <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Qty" name="requested" value="<?php echo $requested; ?>">
-    <div class="input-group-append">
-      <button class="btn btn-outline-secondary" type="submit" name="update-request" value="update-requested">Save</button>
+  
+  <div class="row">
+    <div class="col9">
+  
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Qty" name="requested" value="<?php echo $requested; ?>">
+        <div class="input-group-append"> 
+          <button class="btn btn-outline-secondary" type="submit" name="update-request" value="update-requested">Save</button>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col">
+      <div ic-remove-after="3s">Saved</div>
     </div>
   </div>
 </form>
