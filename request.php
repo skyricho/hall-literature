@@ -20,7 +20,7 @@ if ($_GET['script'] == 'reset-proposed') {
 
 $request = $fm->newFindCommand('web');
 //$request->addFindCriterion('Inventory::proposed', '*');
-$request->addFindCriterion('Inventory::cRequested', '*');  
+$request->addFindCriterion('Inventory::requested', '*');  
 $result = $request->execute();
 
 if (FileMaker::isError($result)) {

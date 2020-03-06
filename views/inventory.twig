@@ -15,7 +15,7 @@
   {% elseif publicationType %}
     <!-- Dropdown nav -->
     <div class="dropdown">
-      <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <a class="btn btn-outline-secondary btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         {{ publicationType }}
       </a>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -175,9 +175,9 @@
     <ul class="list-group">
         {% for pubType in publicationTypes %}
         <li class="list-group-item">
-          <a href="?publicationType={{ pubType }}">
+          <h5><a href="?publicationType={{ pubType }}">
             {{ pubType }}
-          </a>
+          </a></h5>
         </li>
         {% endfor %}
     </ul>
